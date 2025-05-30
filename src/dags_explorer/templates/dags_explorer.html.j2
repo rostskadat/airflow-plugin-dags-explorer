@@ -43,7 +43,7 @@
 {% block title %}Dags Explorer{% endblock %}
 
 {% block head_meta %}
-  {{ super() }}
+  {{ super() | safe }}
   <meta name="dags_index" content="{{ url_for('Airflow.index') }}">
   <meta name="paused_url" content="{{ url_for('Airflow.paused') }}">
   <meta name="status_filter" content="{{ status_filter }}">
@@ -63,7 +63,7 @@
 {% endblock %}
 
 {% block head_css %}
-  {{ super() }}
+  {{ super() | safe }}
   <link rel="stylesheet" type="text/css" href="{{ url_for_asset('switch.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ url_for_asset('dags.css') }}">
 {% endblock %}
@@ -342,8 +342,7 @@
 </div>
 {% endblock %}
 
-{% block tail %}
-  {{ super() }}
+{% block add_tail_js %}
   <script src="{{ url_for_asset('d3.min.js') }}"></script>
   <script src="{{ url_for_asset('dags.js') }}"></script>
   <script>
